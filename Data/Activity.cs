@@ -14,6 +14,7 @@ namespace FunTogether.Data
         public DateTime Date { get; set; }
         public double LocationLongitude { get; set; }
         public double LocationLatitude { get; set; }
+        public string City { get; set; }
         public string Description { get; set; }
         public ICollection<UserActivity> UserActivities { get; set; }
         public ICollection<ActivityFilter> ActivityFilters { get; set; }
