@@ -13,8 +13,11 @@ namespace FunTogether.Models
         public string Title { get; set; }
         [Required]
         public DateTime Date { get; set; }
+        [Required]
+        public string Location { get; set; }
         public double LocationLongitude { get; set; }
         public double LocationLatitude { get; set; }
+        public string City { get; set; }
         [MaxLength(250)]
         public string Description { get; set; }
 

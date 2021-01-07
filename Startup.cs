@@ -48,6 +48,13 @@ namespace FunTogether
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            // Work-around to accept decimal values in forms
+            var supportedCultures = new[] { "pl", "en-US" };
+            var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+              .AddSupportedCultures(supportedCultures)
+              .AddSupportedUICultures(supportedCultures);
+            app.UseRequestLocalization(localizationOptions);
+
             app.UseRouting();
 
             app.UseAuthorization();

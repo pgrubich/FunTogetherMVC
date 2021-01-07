@@ -26,7 +26,7 @@ namespace FunTogether.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateActivity(ActivityViewModel model)
+        public async Task<IActionResult> Create(ActivityViewModel model)
         {      
             if (!ModelState.IsValid)
             {
