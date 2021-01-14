@@ -9,6 +9,7 @@ namespace FunTogether.MappingConfigurations
         public EntityToModelMappingProfile()
         {
             CreateMap<Activity, ActivityViewModel>();
+            CreateMap<Activity, ActivitiesIndexViewModel>();
             CreateMap<ActivityViewModel, Activity>();
             //           CreateMap<User, UserViewModel>();
         }
