@@ -50,7 +50,13 @@ namespace FunTogether.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var model = new ActivityViewModel
+            {
+                AgeGroups = _dbContext.Filters.Where(f => f.Category == Filter.FilterCategory.AgeGroup).ToList(),
+                Genders = _dbContext.Filters.Where(f => f.Category == Filter.FilterCategory.Gender).ToList()
+            };
+
+            return View(model);
         }
 
         [HttpPost]
@@ -58,13 +64,33 @@ namespace FunTogether.Controllers
         {      
             if (!ModelState.IsValid)
             {
+                model.AgeGroups = _dbContext.Filters.Where(f => f.Category == Filter.FilterCategory.AgeGroup).ToList();
+                model.Genders = _dbContext.Filters.Where(f => f.Category == Filter.FilterCategory.Gender).ToList();
                 return View(model);
             }
 
             Activity activity = _mapper.Map<Activity>(model);
             await _dbContext.Activities.AddAsync(activity);
-            await _dbContext.SaveChangesAsync();
 
+            // Create age group filters for activity
+            await CreateActivityFilters(model.AgeGroups, activity);
+
+            // Create gender filters for activity
+            await CreateActivityFilters(model.Genders, activity);
+
+            // Create activity type filter for activity
+            Filter filter = _dbContext.Filters.FirstOrDefault(f => f.Id == model.ActivityTypeId);
+            if (filter != null)
+            {
+                ActivityFilter activityFilter = new ActivityFilter
+                {
+                    Activity = activity,
+                    Filter = filter
+                };
+                await _dbContext.ActivityFilters.AddAsync(activityFilter);
+            }
+
+            await _dbContext.SaveChangesAsync();
             return View("Details", model);
         }
 
@@ -106,6 +132,7 @@ namespace FunTogether.Controllers
             return View("Details", model);
         }
 
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             var activity = await _dbContext.Activities.FindAsync(id);
@@ -119,5 +146,27 @@ namespace FunTogether.Controllers
 
             return RedirectToAction("Index");
         }
+
+        private async Task CreateActivityFilters(List<Filter> filters, Activity activity)
+        {
+            // Exit if all filters are checked
+            if (!filters.Any(f => f.Selected == false)) return;
+
+            foreach (var filter in filters)
+            {
+                if (filter.Selected)
+                {
+                    Filter f = _dbContext.Filters.FirstOrDefault(f => f.Id == filter.Id);
+                    ActivityFilter activityFilter = new ActivityFilter
+                    {
+                        Activity = activity,
+                        Filter = f
+                    };
+                    await _dbContext.ActivityFilters.AddAsync(activityFilter);
+                }
+            }
+        }
+
+
     }
 }

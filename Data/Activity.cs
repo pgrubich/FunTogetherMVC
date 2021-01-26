@@ -16,7 +16,23 @@ namespace FunTogether.Data
         public double LocationLatitude { get; set; }
         public string City { get; set; }
         public string Description { get; set; }
+        public ActivityType Type { get; set; }
         public ICollection<UserActivity> UserActivities { get; set; }
         public ICollection<ActivityFilter> ActivityFilters { get; set; }
+    }
+
+    public enum ActivityType
+    {
+        Sport,
+        [Display(Name = "Cultural event")]
+        CulturalEvent,
+        Music,
+        Art,
+        Food,
+        Games,
+        Science,
+        [Display(Name = "Outdoor activities")]
+        OutdoorActivities,
+        Other
     }
 }

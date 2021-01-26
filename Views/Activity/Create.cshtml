@@ -17,6 +17,39 @@
             </div>
 
             <div class="form-group mb-3">
+                <label asp-for="ActivityTypeId"></label>
+                <select asp-for="Type" asp-items="Html.GetEnumSelectList<FunTogether.Data.ActivityType>()" class="form-control"></select>
+            </div>
+
+            <div class="form-group checkbox checkboxlist mb-3">
+                <label asp-for="AgeGroups"></label>
+                @{
+                    for (int i = 0; i < Model.AgeGroups.Count(); i++)
+                    {
+                        <div>
+                            <input type="checkbox" asp-for="@Model.AgeGroups[i].Selected" />
+                            <label asp-for="@Model.AgeGroups[i].Id">@Model.AgeGroups[i].Value</label>
+                            <input asp-for="@Model.AgeGroups[i].Id" type="hidden" />
+                        </div>
+                    }
+                }
+            </div>
+
+            <div class="form-group checkbox checkboxlist mb-3">
+                <label asp-for="Genders"></label>
+                @{
+                    for (int i = 0; i < Model.Genders.Count(); i++)
+                    {
+                        <div>
+                            <input type="checkbox" asp-for="@Model.Genders[i].Selected" />
+                            <label asp-for="@Model.Genders[i].Id">@Model.Genders[i].Value</label>
+                            <input asp-for="@Model.Genders[i].Id" type="hidden" />
+                        </div>
+                    }
+                }
+            </div>
+
+            <div class="form-group mb-3">
                 <label asp-for="Location"></label>
                 <input asp-for="Location" class="form-control" type="text" />
                 <span asp-validation-for="Location" class="text-danger"></span>
