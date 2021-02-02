@@ -7,6 +7,8 @@ using FunTogether.Models;
 using FunTogether.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using FunTogether.Filters;
+using Microsoft.Extensions.Configuration;
 
 namespace FunTogether.Controllers
 {
@@ -14,17 +16,22 @@ namespace FunTogether.Controllers
     {
         private FunTogetherContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-        public ActivityController(FunTogetherContext context, IMapper mapper)
+        public ActivityController(FunTogetherContext context, IMapper mapper, IConfiguration configuration)
         {
             _dbContext = context;
             _mapper = mapper;
+            _configuration = configuration;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pageNumber)
         {
-            var activities = await _dbContext.Activities.ToListAsync();
-            var modelItems = _mapper.Map<IList<Activity>, IList<ActivitiesIndexViewModel>>(activities);
+            int pageSize = _configuration.GetValue<int>("IndexPageSize");
+            var activities = _dbContext.Activities.AsNoTracking();
+            var pagedActivities = await PaginatedList<Activity>.CreatePagedResultAsync(activities, pageNumber ?? 1, pageSize);
+            var modelItems = _mapper.Map<PaginatedList<Activity>, PaginatedList<ActivitiesIndexViewModel>>(pagedActivities);
+
             return View(modelItems);
         }
 
