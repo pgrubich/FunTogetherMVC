@@ -63,7 +63,7 @@ namespace FunTogether
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Activity}/{action=Index}/{id?}");
             });
         }
     }

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FunTogether.Models
 {
-    public class ActivitiesIndexViewModel
+    public class ActivityIndexViewModel
     {
         public int Id { get; set; }
         public string Title { get; set; }

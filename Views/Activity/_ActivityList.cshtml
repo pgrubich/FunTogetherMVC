@@ -1,0 +1,14 @@
+﻿@model FunTogether.Filters.PaginatedList<FunTogether.Models.ActivityIndexViewModel>
+
+@foreach (var activity in Model)
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">@activity.Title</h5>
+            <div class="card-text">@activity.Date</div>
+            <div class="card-text">@activity.City</div>
+            <a asp-action="Details" asp-route-id="@activity.Id">Details</a>
+        </div>
+    </div>
+}
+@Model.PageNumber/@Model.TotalPages

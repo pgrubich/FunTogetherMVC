@@ -30,9 +30,21 @@ namespace FunTogether.Controllers
             int pageSize = _configuration.GetValue<int>("IndexPageSize");
             var activities = _dbContext.Activities.AsNoTracking();
             var pagedActivities = await PaginatedList<Activity>.CreatePagedResultAsync(activities, pageNumber ?? 1, pageSize);
-            var modelItems = _mapper.Map<PaginatedList<Activity>, PaginatedList<ActivitiesIndexViewModel>>(pagedActivities);
+            var modelItems = _mapper.Map<PaginatedList<Activity>, PaginatedList<ActivityIndexViewModel>>(pagedActivities);
 
             return View(modelItems);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FilterActivities([FromBody] ActivitySearchFilterModel filterModel)
+        {
+            int pageSize = _configuration.GetValue<int>("IndexPageSize");
+            var activities = _dbContext.Activities.AsNoTracking();
+            var filteredActivities = FilterHelper.GetActivities(activities, filterModel);
+            var pagedActivities = await PaginatedList<Activity>.CreatePagedResultAsync(filteredActivities, 1, pageSize);
+            var modelItems = _mapper.Map<PaginatedList<Activity>, PaginatedList<ActivityIndexViewModel>>(pagedActivities);
+
+            return PartialView("_ActivityList", modelItems);
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -173,7 +185,5 @@ namespace FunTogether.Controllers
                 }
             }
         }
-
-
     }
 }

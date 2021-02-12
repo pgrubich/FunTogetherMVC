@@ -13,7 +13,7 @@ namespace FunTogether.MappingConfigurations
             CreateMap<Activity, ActivityViewModel>();
             CreateMap<ActivityViewModel, Activity>();
 
-            CreateMap<Activity, ActivitiesIndexViewModel>();
+            CreateMap<Activity, ActivityIndexViewModel>();
             CreateMap(typeof(PaginatedList<>), typeof(PaginatedList<>)).ConvertUsing(typeof(PaginatedListConverter<,>));
         }
 
