@@ -2,13 +2,47 @@
 
 @foreach (var activity in Model)
 {
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title">@activity.Title</h5>
-            <div class="card-text">@activity.Date</div>
-            <div class="card-text">@activity.City</div>
-            <a asp-action="Details" asp-route-id="@activity.Id">Details</a>
+<div class="d-flex">
+    <div class="card mb-3 flex-fill">
+        <div class="card-header pt-2 @activity.Type">
+           <!-- icons generated in js -->
+        </div>
+        <div class="card-body row">
+            <div class="col-3 text-center justify-content-center align-self-center">
+                <p class="card-text" id="activityDateDay"><b>@activity.Date.Day</b></p>
+                <p class="card-text @activity.Type">@activity.Date.ToString("MMM", new System.Globalization.CultureInfo("en-US"))</p>
+                <p class="card-text small">@activity.Date.ToString("hh:mm tt")</p>
+            </div>
+            <div class="col-9 d-flex flex-column">
+                <h5 class="card-title">@activity.Title</h5>
+                <p class="card-text small">Poznań</p>
+                <p class="card-text small">Osiedle Pod Lipami 8/6</p>
+                    <div class="btn-group mt-2 flex-fill align-items-end">
+                        <a asp-action="Details" asp-route-id="@activity.Id" class="btn btn-sm btn-outline-primary @activity.Type">Details</a>
+                        <a asp-action="#"  class="btn btn-sm btn-primary @activity.Type">Join</a>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 }
-@Model.PageNumber/@Model.TotalPages
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<div class="col-lg-12 col-xl-12 text-center">
+    <ul class="pagination mx-auto justify-content-center">
+        <li class="page-item">
+            <input type="submit" onclick="changePage(@(Model.PageNumber - 1))" value="Previous" class="btn btn-default page-link" @prevDisabled />
+        </li>
+        <li class="page-item disabled">
+            <span class="page-link ">
+                @Model.PageNumber / @Model.TotalPages
+            </span>
+        </li>
+        <li class="page-item">
+            <input type="submit" onclick="changePage(@(Model.PageNumber + 1))" value="Next" class="btn btn-default page-link" @nextDisabled />
+        </li>
+
+    </ul>
+</div>

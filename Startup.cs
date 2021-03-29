@@ -27,7 +27,7 @@ namespace FunTogether
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews(options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
+            services.AddControllersWithViews(options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute())).AddRazorRuntimeCompilation();
             services.AddDbContext<FunTogetherContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FunTogetherContext")));
             services.AddAutoMapper(typeof(Startup));
         }

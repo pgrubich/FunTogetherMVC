@@ -12,6 +12,20 @@ namespace FunTogether.Filters
         public int TotalPages { get; private set; }
         public int PageSize { get; private set; }
         public int RecordsCount { get; private set; }
+        public bool HasPreviousPage
+        {
+            get
+            {
+                return (PageNumber > 1);
+            }
+        }
+        public bool HasNextPage
+        {
+            get
+            {
+                return (PageNumber < TotalPages);
+            }
+        }
 
         public PaginatedList(IList<T> items, int itemsCount, int pageNumber, int pageSize, int totalPages)
         {

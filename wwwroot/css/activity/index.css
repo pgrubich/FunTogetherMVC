@@ -1,0 +1,329 @@
+﻿.card {
+    padding: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.card:hover {
+    background-color: #e9ecef;
+    transition: 0.2s;
+}
+
+.card-header {
+    padding: 0 1.25rem;
+}
+
+.card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+p.card-text {
+    margin:0;
+}
+
+#activityDateDay {
+    font-size: large;
+}
+
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: .3rem;
+}
+
+.card-body > .col-9 > .btn-group {
+    width: 60%;
+    margin-left: auto;
+}
+
+.carousel-caption {
+    display: block !important;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    right: 0;
+    padding: 0;
+    bottom: unset;
+    font-size: 1.50rem; 
+    text-shadow: 2px 2px #000;
+}
+
+@media (max-width: 400px) {
+    .carousel-caption {
+        font-size: 1.2rem;
+    }
+}
+
+.carousel-caption > p {
+    font-size: 1em;
+}
+
+#activities {
+    margin: auto;
+}
+
+/* activity categories*/
+p.Sport {
+    color: var(--sport);
+}
+p.CulturalEvent {
+    color: var(--cultural-event);
+}
+p.Music {
+    color: var(--music);
+}
+p.Art {
+    color: var(--art);
+}
+p.Food {
+    color: var(--food);
+}
+p.Games {
+    color: var(--games);
+}
+p.Science {
+    color: var(--science);
+}
+p.OutdoorActivities {
+    color: var(--outdoor-activities);
+}
+p.Other {
+    color: var(--other);
+}
+
+
+.card-header.Sport {
+    background-color: var(--sport);
+}
+.card-header.CulturalEvent {
+    background-color: var(--cultural-event);
+}
+.card-header.Music {
+    background-color: var(--music);
+}
+.card-header.Art {
+    background-color: var(--art);
+}
+.card-header.Food {
+    background-color: var(--food);
+}
+.card-header.Games {
+    background-color: var(--games);
+}
+.card-header.Science {
+    background-color: var(--science);
+}
+.card-header.OutdoorActivities {
+    background-color: var(--outdoor-activities);
+}
+.card-header.Other {
+    background-color: var(--other);
+}
+
+
+/* activity buttons */
+.btn-group > .btn.Sport {
+    background-color: var(--sport);
+    border-color: var(--sport-dark);
+}
+.btn-group > .btn.CulturalEvent {
+    background-color: var(--cultural-event);
+    border-color: var(--cultural-event-dark);
+}
+.btn-group > .btn.Music {
+    background-color: var(--music);
+    border-color: var(--music-dark);
+}
+.btn-group > .btn.Art {
+    background-color: var(--art);
+    border-color: var(--art-dark);
+}
+.btn-group > .btn.Food {
+    background-color: var(--food);
+    border-color: var(--food-dark);
+}
+.btn-group > .btn.Games {
+    background-color: var(--games);
+    border-color: var(--games-dark);
+}
+.btn-group > .btn.Science {
+    background-color: var(--science);
+    border-color: var(--science-dark);
+}
+.btn-group > .btn.OutdoorActivities {
+    background-color: var(--outdoor-activities);
+    border-color: var(--outdoor-activities-dark);
+}
+.btn-group > .btn.Other {
+    background-color: var(--other);
+    border-color: var(--other-dark);
+}
+
+
+.btn-group > .btn.btn-outline-primary.Sport {
+    background-color: white;
+    color: var(--sport);
+}
+.btn-group > .btn.btn-outline-primary.CulturalEvent {
+    background-color: white;
+    color: var(--cultural-event);
+}
+.btn-group > .btn.btn-outline-primary.Music {
+    background-color: white;
+    color: var(--music);
+}
+.btn-group > .btn.btn-outline-primary.Art {
+    background-color: white;
+    color: var(--art);
+}
+.btn-group > .btn.btn-outline-primary.Food {
+    background-color: white;
+    color: var(--food);
+}
+.btn-group > .btn.btn-outline-primary.Games {
+    background-color: white;
+    color: var(--games);
+}
+.btn-group > .btn.btn-outline-primary.Science {
+    background-color: white;
+    color: var(--science);
+}
+.btn-group > .btn.btn-outline-primary.OutdoorActivities {
+    background-color: white;
+    color: var(--outdoor-activities);
+}
+.btn-group > .btn.btn-outline-primary.Other {
+    background-color: white;
+    color: var(--other);
+}
+
+
+/* activity buttons on hover*/
+.btn-group > .btn.btn-outline-primary.Sport:hover {
+    background-color: var(--sport);
+    color: white;
+}
+.btn-group > .btn.btn-outline-primary.CulturalEvent:hover {
+    background-color: var(--cultural-event);
+    color: white;
+}
+.btn-group > .btn.btn-outline-primary.Music:hover {
+    background-color: var(--music);
+    color: white;
+}
+.btn-group > .btn.btn-outline-primary.Art:hover {
+    background-color: var(--art);
+    color: white;
+}
+.btn-group > .btn.btn-outline-primary.Food:hover {
+    background-color: var(--food);
+    color: white;
+}
+.btn-group > .btn.btn-outline-primary.Games:hover {
+    background-color: var(--games);
+    color: white;
+}
+.btn-group > .btn.btn-outline-primary.Science:hover {
+    background-color: var(--science);
+    color: white;
+}
+.btn-group > .btn.btn-outline-primary.OutdoorActivities:hover {
+    background-color: var(--outdoor-activities);
+    color: white;
+}
+.btn-group > .btn.btn-outline-primary.Other:hover {
+    background-color: var(--other);
+    color: white;
+}
+
+
+.btn-group > .btn.Sport:hover {
+    background-color: var(--sport-dark);
+    border-color: var(--sport-dark);
+    color: white;
+}
+.btn-group > .btn.CulturalEvent:hover {
+    background-color: var(--cultural-event-dark);
+    border-color: var(--cultural-event-dark);
+    color: white;
+}
+.btn-group > .btn.Music:hover {
+    background-color: var(--music-dark);
+    border-color: var(--music-dark);
+    color: white;
+}
+.btn-group > .btn.Art:hover {
+    background-color: var(--art-dark);
+    border-color: var(--art-dark);
+    color: white;
+}
+.btn-group > .btn.Food:hover {
+    background-color: var(--food-dark);
+    border-color: var(--food-dark);
+    color: white;
+}
+.btn-group > .btn.Games:hover {
+    background-color: var(--games-dark);
+    border-color: var(--games-dark);
+    color: white;
+}
+.btn-group > .btn.Science:hover {
+    background-color: var(--science-dark);
+    border-color: var(--science-dark);
+    color: white;
+}
+.btn-group > .btn.OutdoorActivities:hover {
+    background-color: var(--outdoor-activities-dark);
+    border-color: var(--outdoor-activities-dark);
+    color: white;
+}
+.btn-group > .btn.Other:hover {
+    background-color: var(--other-dark);
+    border-color: var(--other-dark);
+    color: white;
+}
+
+:root {
+    /* lapis-lazuli */
+    --science: #145c9eff;
+    /* dark-orchid */
+    --art: #7a3cb9ff;
+    /* sunray */
+    --games: #e4b363ff;
+    /* shamrock-green */
+    --outdoor-activities: #399e5aff;
+    /* azure */
+    --sport: #3f84e5ff;
+    /* claret */
+    --cultural-event: #89023eff;
+    /* fiery-rose */
+    --music: #fc6471ff;
+    /* maximum-blue-green */
+    --food: #17bebbff;
+    /* bottle-green */
+    --other: #12664fff;
+
+    /* usafa-blue */
+    --science-dark: #11518cff;
+    /* rebecca-purple */
+    --art-dark: #6c35a3ff;
+    /* indian-yellow */
+    --games-dark: #dea242ff;
+    /* sea-green */
+    --outdoor-activities-dark: #328b4fff;
+    /* bright-navy-blue */
+    --sport-dark: #1f70e0ff;
+    /* claret */
+    --cultural-event-dark: #770237ff;
+    /* red-salsa */
+    --music-dark: #fb3b4bff;
+    /* light-sea-green */
+    --food-dark: #15a8a5ff;
+    /* castleton-green */
+    --other-dark: #105c47ff;
+}

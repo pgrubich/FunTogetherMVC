@@ -28,7 +28,7 @@ namespace FunTogether.Controllers
         public async Task<IActionResult> Index(int? pageNumber)
         {
             int pageSize = _configuration.GetValue<int>("IndexPageSize");
-            var activities = _dbContext.Activities.AsNoTracking();
+            var activities = _dbContext.Activities.AsNoTracking().OrderBy(a => a.Date);
             var pagedActivities = await PaginatedList<Activity>.CreatePagedResultAsync(activities, pageNumber ?? 1, pageSize);
             var modelItems = _mapper.Map<PaginatedList<Activity>, PaginatedList<ActivityIndexViewModel>>(pagedActivities);
 
@@ -39,9 +39,9 @@ namespace FunTogether.Controllers
         public async Task<IActionResult> FilterActivities([FromBody] ActivitySearchFilterModel filterModel)
         {
             int pageSize = _configuration.GetValue<int>("IndexPageSize");
-            var activities = _dbContext.Activities.AsNoTracking();
+            var activities = _dbContext.Activities.AsNoTracking().OrderBy(a => a.Date);
             var filteredActivities = FilterHelper.GetActivities(activities, filterModel);
-            var pagedActivities = await PaginatedList<Activity>.CreatePagedResultAsync(filteredActivities, 1, pageSize);
+            var pagedActivities = await PaginatedList<Activity>.CreatePagedResultAsync(filteredActivities, filterModel.PageNumber, pageSize);
             var modelItems = _mapper.Map<PaginatedList<Activity>, PaginatedList<ActivityIndexViewModel>>(pagedActivities);
 
             return PartialView("_ActivityList", modelItems);
@@ -54,7 +54,7 @@ namespace FunTogether.Controllers
                 return NotFound();
             }
 
-            var activity = await _dbContext.Activities
+            var activity = await _dbContext.Activities.Include(af => af.ActivityFilters).ThenInclude(f => f.Filter)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
 
@@ -64,6 +64,11 @@ namespace FunTogether.Controllers
             }
 
             var model = _mapper.Map<ActivityViewModel>(activity);
+            model.AgeGroups = activity.ActivityFilters.Select(f => f.Filter)
+                              .Where(f => f.Category == Filter.FilterCategory.AgeGroup).ToList();
+            model.Genders = activity.ActivityFilters.Select(f => f.Filter)
+                              .Where(f => f.Category == Filter.FilterCategory.Gender).ToList();
+
             return View(model);
         }
 
@@ -72,7 +77,8 @@ namespace FunTogether.Controllers
             var model = new ActivityViewModel
             {
                 AgeGroups = _dbContext.Filters.Where(f => f.Category == Filter.FilterCategory.AgeGroup).ToList(),
-                Genders = _dbContext.Filters.Where(f => f.Category == Filter.FilterCategory.Gender).ToList()
+                Genders = _dbContext.Filters.Where(f => f.Category == Filter.FilterCategory.Gender).ToList(),
+                Date = DateTime.Today
             };
 
             return View(model);

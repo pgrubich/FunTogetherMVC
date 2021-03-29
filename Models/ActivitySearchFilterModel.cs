@@ -11,5 +11,6 @@ namespace FunTogether.Models
         public string City { get; set; }
         public string[] SelectedCategories { get; set; }
         public ActivityType[] Categories { get; set; }
+        public int PageNumber { get; set; }
     }
 }
