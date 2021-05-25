@@ -29,6 +29,7 @@ namespace FunTogether
         {
             services.AddControllersWithViews(options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute())).AddRazorRuntimeCompilation();
             services.AddDbContext<FunTogetherContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FunTogetherContext")));
+            services.AddIdentityCore<User>().AddEntityFrameworkStores<FunTogetherContext>();
             services.AddAutoMapper(typeof(Startup));
         }
 

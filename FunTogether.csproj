@@ -6,7 +6,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201214095246_Initial.cs" />
+    <Compile Remove="Migrations\20201214095246_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20201216094157_AddActivityTitle.cs" />
+    <Compile Remove="Migrations\20201216094157_AddActivityTitle.Designer.cs" />
+    <Compile Remove="Migrations\20210107100441_AddActivityCity.cs" />
+    <Compile Remove="Migrations\20210107100441_AddActivityCity.Designer.cs" />
+    <Compile Remove="Migrations\20210125131726_AddFilterData.cs" />
+    <Compile Remove="Migrations\20210125131726_AddFilterData.Designer.cs" />
+    <Compile Remove="Migrations\20210524133324_AddIdentityTables.cs" />
+    <Compile Remove="Migrations\20210524133324_AddIdentityTables.Designer.cs" />
+    <Compile Remove="Migrations\20210524140148_AddIdentityTables.cs" />
+    <Compile Remove="Migrations\20210524140148_AddIdentityTables.Designer.cs" />
+    <Compile Remove="Migrations\20210524142915_Initial.cs" />
+    <Compile Remove="Migrations\20210524142915_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20210524143115_Initial.cs" />
+    <Compile Remove="Migrations\20210524143115_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20210524145057_UpdateIdentityNames.cs" />
+    <Compile Remove="Migrations\20210524145057_UpdateIdentityNames.Designer.cs" />
+    <Compile Remove="Migrations\20210524145320_UpdateIdentityNames.cs" />
+    <Compile Remove="Migrations\20210524145320_UpdateIdentityNames.Designer.cs" />
+    <Compile Remove="Migrations\20210524145412_UpdateIdentityNames.cs" />
+    <Compile Remove="Migrations\20210524145412_UpdateIdentityNames.Designer.cs" />
+    <Compile Remove="Migrations\20210524151546_Chang.cs" />
+    <Compile Remove="Migrations\20210524151546_Chang.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.12" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
@@ -16,6 +44,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 
   <ItemGroup>

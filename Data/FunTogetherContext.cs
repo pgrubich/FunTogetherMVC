@@ -1,12 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using FunTogether.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using FunTogether.Data.Configuration;
 
 namespace FunTogether.Data
 {
-    public class FunTogetherContext : DbContext
+    public class FunTogetherContext : IdentityDbContext<User>
     {
         public DbSet<Activity> Activities { get; set; }
-        public DbSet<User> Users { get; set; }
+        //public DbSet<User> Users { get; set; }
         public DbSet<Filter> Filters { get; set; }
         public DbSet<UserActivity> UserActivities { get; set; }
         public DbSet<ActivityFilter> ActivityFilters { get; set; }
@@ -15,6 +18,10 @@ namespace FunTogether.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+
             modelBuilder.Entity<UserActivity>().HasKey(ua => new { ua.UserId, ua.ActivityId });
             modelBuilder.Entity<ActivityFilter>().HasKey(af => new { af.ActivityId, af.FilterId });
             modelBuilder.Entity<Activity>().Property(a => a.Type).HasConversion<string>();
@@ -27,6 +34,35 @@ namespace FunTogether.Data
                  new Filter() { Id = 5, Category = Filter.FilterCategory.AgeGroup, Value = "50+" },
                  new Filter() { Id = 6, Category = Filter.FilterCategory.Gender, Value = "Female" },
                  new Filter() { Id = 7, Category = Filter.FilterCategory.Gender, Value = "Male" });
+           
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable(name: "Users");
+            });           
+            modelBuilder.Entity<IdentityRole>(entity =>
+            {
+                entity.ToTable(name: "Roles");
+            });
+            modelBuilder.Entity<IdentityUserRole<string>>(entity =>
+            {
+                entity.ToTable("UserRoles");
+            });
+            modelBuilder.Entity<IdentityUserClaim<string>>(entity =>
+            {
+                entity.ToTable("UserClaims");
+            });
+            modelBuilder.Entity<IdentityUserLogin<string>>(entity =>
+            {
+                entity.ToTable("UserLogins");
+            });
+            modelBuilder.Entity<IdentityRoleClaim<string>>(entity =>
+            {
+                entity.ToTable("RoleClaims");
+            });
+            modelBuilder.Entity<IdentityUserToken<string>>(entity =>
+            {
+                entity.ToTable("UserTokens");
+            });
         }
     }
 }
